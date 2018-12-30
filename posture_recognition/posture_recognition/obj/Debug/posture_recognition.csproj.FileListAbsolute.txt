@@ -1,0 +1,7 @@
+F:\posture_recognition\posture_recognition\posture_recognition\bin\Debug\posture_recognition.exe.config
+F:\posture_recognition\posture_recognition\posture_recognition\bin\Debug\posture_recognition.exe
+F:\posture_recognition\posture_recognition\posture_recognition\bin\Debug\posture_recognition.pdb
+F:\posture_recognition\posture_recognition\posture_recognition\obj\Debug\posture_recognition.csprojAssemblyReference.cache
+F:\posture_recognition\posture_recognition\posture_recognition\obj\Debug\posture_recognition.csproj.CoreCompileInputs.cache
+F:\posture_recognition\posture_recognition\posture_recognition\obj\Debug\posture_recognition.exe
+F:\posture_recognition\posture_recognition\posture_recognition\obj\Debug\posture_recognition.pdb

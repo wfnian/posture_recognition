@@ -1,3 +1,0 @@
-﻿  pch.cpp
-  posture_recognition.cpp
-LINK : fatal error LNK1104: 无法打开文件“C:\curl-7.63.0\builds\libcurl-vc14-x64-release-static-ipv6-sspi-winssl\lib.obj”
