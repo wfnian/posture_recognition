@@ -1,0 +1,85 @@
+{
+    "image_id": "/SobyNmKvhSg7ijpCHpFHw==",
+    "request_id": "1546656359,aa810687-22a0-4868-adaf-74922de9bac6",
+    "time_used": 269,
+    "skeletons": [{
+        "body_rectangle": {
+            "width": 75,
+            "top": 6,
+            "left": 4,
+            "height": 226
+        },
+        "landmark": {
+            "right_hand": {
+                "y": 83,
+                "x": 51,
+                "score": 0.47400448
+            },
+            "head": {
+                "y": 2,
+                "x": 39,
+                "score": 0.66043746
+            },
+            "neck": {
+                "y": 35,
+                "x": 39,
+                "score": 0.577088
+            },
+            "left_shoulder": {
+                "y": 45,
+                "x": 53,
+                "score": 0.57319313
+            },
+            "right_buttocks": {
+                "y": 125,
+                "x": 32,
+                "score": 0.6659171
+            },
+            "left_knee": {
+                "y": 182,
+                "x": 49,
+                "score": 0.61312085
+            },
+            "right_elbow": {
+                "y": 73,
+                "x": 18,
+                "score": 0.58251125
+            },
+            "right_shoulder": {
+                "y": 45,
+                "x": 25,
+                "score": 0.6252368
+            },
+            "left_buttocks": {
+                "y": 130,
+                "x": 51,
+                "score": 0.60758454
+            },
+            "left_foot": {
+                "y": 225,
+                "x": 51,
+                "score": 0.5632228
+            },
+            "left_elbow": {
+                "y": 78,
+                "x": 56,
+                "score": 0.6343309
+            },
+            "left_hand": {
+                "y": 83,
+                "x": 58,
+                "score": 0.51201504
+            },
+            "right_knee": {
+                "y": 177,
+                "x": 25,
+                "score": 0.6725706
+            },
+            "right_foot": {
+                "y": 225,
+                "x": 23,
+                "score": 0.59064144
+            }
+        }
+    }]
+}

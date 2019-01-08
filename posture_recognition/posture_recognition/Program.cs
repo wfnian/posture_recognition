@@ -18,6 +18,7 @@ namespace posture_recognition
             //string s =Program().GetFunction(serviceAdderss);
             Program program = new Program();
             program.m();
+            program.GetFunction(serviceAdderss);
         }
         public void m()
         {

@@ -1,0 +1,10 @@
+F:\posture_recognition\posture_recognition\interface\bin\Debug\@interface.exe.config
+F:\posture_recognition\posture_recognition\interface\bin\Debug\@interface.exe
+F:\posture_recognition\posture_recognition\interface\bin\Debug\@interface.pdb
+F:\posture_recognition\posture_recognition\interface\obj\Debug\interface.csprojAssemblyReference.cache
+F:\posture_recognition\posture_recognition\interface\obj\Debug\interface.Form1.resources
+F:\posture_recognition\posture_recognition\interface\obj\Debug\interface.Properties.Resources.resources
+F:\posture_recognition\posture_recognition\interface\obj\Debug\interface.csproj.GenerateResource.cache
+F:\posture_recognition\posture_recognition\interface\obj\Debug\interface.csproj.CoreCompileInputs.cache
+F:\posture_recognition\posture_recognition\interface\obj\Debug\@interface.exe
+F:\posture_recognition\posture_recognition\interface\obj\Debug\@interface.pdb
