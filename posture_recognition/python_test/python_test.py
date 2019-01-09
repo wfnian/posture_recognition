@@ -14,7 +14,7 @@ def img2base(file_name):
 
 def post_pic():
     url = "https://api-cn.faceplusplus.com/humanbodypp/v1/skeleton"
-    file_path = "f:\\pic\\pix\\gl.png" #front.jpg"
+    file_path = "f:\\pic\\sbn.jpg" #front.jpg"
     img1 = img2base(file_path)
     pic = cv2.imread(file_path, 1)
 
