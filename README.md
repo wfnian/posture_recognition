@@ -3,3 +3,4 @@
 - ![](https://img.shields.io/badge/Author-%40wfnian%F0%9F%98%81-red.svg)
 - 😁😁😁 
 - Posture recognition based on common camera
+- 若有需要可提issues.
