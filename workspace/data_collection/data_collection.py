@@ -8,9 +8,9 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
-from build.workspace.testWindow import *
+from workspace.data_collection.testWindow import *
 
-picSN = 91
+picSN = 1111
 
 
 class Video:
@@ -33,7 +33,9 @@ class Video:
             self.currentFrame = cv2.cvtColor(readFrame, cv2.COLOR_BGR2RGB)
 
     def convertFrame(self):
-        """     converts frame to format suitable for QtGui            """
+        """     
+        converts frame to format suitable for QtGui            
+        """
         try:
             height, width = self.currentFrame.shape[:2]
             img = QImage(self.currentFrame,
@@ -79,7 +81,7 @@ class mWindow(QMainWindow, Ui_MainWindow):
         picSN += 1
         pictureName = str(picSN) + '_' + pose + ".jpg"
 
-        self.picPaths = "../../picture/" + pictureName
+        self.picPaths = "../dataset/pic_background/" + pictureName
         cv2.imwrite(self.picPaths, self.capturedFrame)
         print('captured')
         try:
@@ -94,6 +96,12 @@ class mWindow(QMainWindow, Ui_MainWindow):
         dir_path = os.path.dirname(os.path.realpath(__file__))
         try:
             sys.path.append(dir_path + '/../python/openpose/Release')
+            # 一定要注意是 build目录下的python而不是openpose根目录下的
+            # 如果一直报错可以将绝对路径加入 path环境变量中去。
+            # 或者将绝对路径引进来 F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release
+            # 或是如下
+            sys.path.append(
+                "F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release")
             import pyopenpose as op
 
         except ImportError as e:
@@ -102,6 +110,7 @@ class mWindow(QMainWindow, Ui_MainWindow):
         # =============================参数args 设置====================================
         params = dict()
         params["model_folder"] = "F:\\OPENPOSE\\openpose\\models"
+        # 根据实际情况做相应改变
         params["number_people_max"] = 1  # 只检测一个人
         params["camera_resolution"] = "640x360"
         params["disable_blending"] = False
@@ -116,17 +125,19 @@ class mWindow(QMainWindow, Ui_MainWindow):
         opWrapper.emplaceAndPop([datum])  # 输出
         keyPoints = datum.poseKeypoints.tolist()
 
-        dstPicPath = "../../picture/marked_pic/p_" + self.picPaths.split('/')[-1]  # 处理后的图片
+        dstPicPath = "../dataset/marked_pic/p_" + \
+            self.picPaths.split('/')[-1]  # 处理后的图片
         cv2.imwrite(dstPicPath, datum.cvOutputData)
         # ============================= 写骨骼数据文件 ===================================
-        with open("bone_dataSet.data", "a+") as dataSet:
+        with open("../dataset/bone_dataSet.data", "a+") as dataSet:
             dataSet.writelines(
                 str(self.pointDistance(keyPoints[0]) + self.pointAngle(keyPoints[0]) + [int(self.lineEdit.text())]))
             dataSet.write("\n")
         # ============================= 写骨骼图片文件 ===================================
         bone_img = datum.cvOutputData
         height, width, channel = bone_img.shape
-        pixmap = QPixmap.fromImage(QImage(bone_img.data, width, height, 3 * width, QImage.Format_RGB888).rgbSwapped())
+        pixmap = QPixmap.fromImage(QImage(
+            bone_img.data, width, height, 3 * width, QImage.Format_RGB888).rgbSwapped())
         self.label_3.setPixmap(pixmap)  # label3 显示图片
 
     def pointDistance(self, keyPoint):
@@ -135,21 +146,36 @@ class mWindow(QMainWindow, Ui_MainWindow):
         :return:list
         :distance:
         """
-        distance0 = (keyPoint[4][0] - keyPoint[9][0]) ** 2 + (keyPoint[4][1] - keyPoint[9][1]) ** 2
-        distance1 = (keyPoint[7][0] - keyPoint[12][0]) ** 2 + (keyPoint[7][1] - keyPoint[12][1]) ** 2
-        distance2 = (keyPoint[2][0] - keyPoint[4][0]) ** 2 + (keyPoint[2][1] - keyPoint[4][1]) ** 2
-        distance3 = (keyPoint[5][0] - keyPoint[7][0]) ** 2 + (keyPoint[5][1] - keyPoint[7][1]) ** 2
-        distance4 = (keyPoint[0][0] - keyPoint[4][0]) ** 2 + (keyPoint[0][1] - keyPoint[4][1]) ** 2
-        distance5 = (keyPoint[0][0] - keyPoint[7][0]) ** 2 + (keyPoint[0][1] - keyPoint[7][1]) ** 2
-        distance6 = (keyPoint[4][0] - keyPoint[10][0]) ** 2 + (keyPoint[4][1] - keyPoint[10][1]) ** 2
-        distance7 = (keyPoint[7][0] - keyPoint[13][0]) ** 2 + (keyPoint[7][1] - keyPoint[13][1]) ** 2
-        distance8 = (keyPoint[4][0] - keyPoint[7][0]) ** 2 + (keyPoint[4][1] - keyPoint[7][1]) ** 2
-        distance9 = (keyPoint[11][0] - keyPoint[14][0]) ** 2 + (keyPoint[11][1] - keyPoint[14][1]) ** 2
-        distance10 = (keyPoint[10][0] - keyPoint[13][0]) ** 2 + (keyPoint[10][1] - keyPoint[13][1]) ** 2
-        distance11 = (keyPoint[6][0] - keyPoint[10][0]) ** 2 + (keyPoint[6][1] - keyPoint[10][1]) ** 2
-        distance12 = (keyPoint[3][0] - keyPoint[13][0]) ** 2 + (keyPoint[3][1] - keyPoint[13][1]) ** 2
-        distance13 = (keyPoint[4][0] - keyPoint[23][0]) ** 2 + (keyPoint[4][1] - keyPoint[23][1]) ** 2
-        distance14 = (keyPoint[7][0] - keyPoint[20][0]) ** 2 + (keyPoint[7][1] - keyPoint[20][1]) ** 2
+        distance0 = (keyPoint[4][0] - keyPoint[9][0]) ** 2 + \
+            (keyPoint[4][1] - keyPoint[9][1]) ** 2
+        distance1 = (keyPoint[7][0] - keyPoint[12][0]) ** 2 + \
+            (keyPoint[7][1] - keyPoint[12][1]) ** 2
+        distance2 = (keyPoint[2][0] - keyPoint[4][0]) ** 2 + \
+            (keyPoint[2][1] - keyPoint[4][1]) ** 2
+        distance3 = (keyPoint[5][0] - keyPoint[7][0]) ** 2 + \
+            (keyPoint[5][1] - keyPoint[7][1]) ** 2
+        distance4 = (keyPoint[0][0] - keyPoint[4][0]) ** 2 + \
+            (keyPoint[0][1] - keyPoint[4][1]) ** 2
+        distance5 = (keyPoint[0][0] - keyPoint[7][0]) ** 2 + \
+            (keyPoint[0][1] - keyPoint[7][1]) ** 2
+        distance6 = (keyPoint[4][0] - keyPoint[10][0]) ** 2 + \
+            (keyPoint[4][1] - keyPoint[10][1]) ** 2
+        distance7 = (keyPoint[7][0] - keyPoint[13][0]) ** 2 + \
+            (keyPoint[7][1] - keyPoint[13][1]) ** 2
+        distance8 = (keyPoint[4][0] - keyPoint[7][0]) ** 2 + \
+            (keyPoint[4][1] - keyPoint[7][1]) ** 2
+        distance9 = (keyPoint[11][0] - keyPoint[14][0]) ** 2 + \
+            (keyPoint[11][1] - keyPoint[14][1]) ** 2
+        distance10 = (keyPoint[10][0] - keyPoint[13][0]
+                      ) ** 2 + (keyPoint[10][1] - keyPoint[13][1]) ** 2
+        distance11 = (keyPoint[6][0] - keyPoint[10][0]
+                      ) ** 2 + (keyPoint[6][1] - keyPoint[10][1]) ** 2
+        distance12 = (keyPoint[3][0] - keyPoint[13][0]
+                      ) ** 2 + (keyPoint[3][1] - keyPoint[13][1]) ** 2
+        distance13 = (keyPoint[4][0] - keyPoint[23][0]
+                      ) ** 2 + (keyPoint[4][1] - keyPoint[23][1]) ** 2
+        distance14 = (keyPoint[7][0] - keyPoint[20][0]
+                      ) ** 2 + (keyPoint[7][1] - keyPoint[20][1]) ** 2
 
         return [distance0, distance1, distance2, distance3, distance4, distance5, distance6, distance7,
                 distance8, distance9, distance10, distance11, distance12, distance13, distance14]

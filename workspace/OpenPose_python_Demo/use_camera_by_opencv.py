@@ -7,6 +7,8 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 try:
     # Change these variables to point to the correct folder (Release/x64 etc.)
     sys.path.append(dir_path + '/../python/openpose/Release')
+    sys.path.append("F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release")
+
     import pyopenpose as op
 
 except ImportError as e:
