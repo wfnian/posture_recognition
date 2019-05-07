@@ -1,7 +1,6 @@
 import math
 import os
 import sys
-from multiprocessing import Process
 
 import cv2
 from PyQt5.QtCore import QTimer
@@ -12,6 +11,33 @@ from workspace.data_collection.testWindow import *
 
 picSN = 1111
 
+# ====================import openpose=========================================
+dir_path = os.path.dirname(os.path.realpath(__file__))
+try:
+    sys.path.append(dir_path + '/../python/openpose/Release')
+    # 一定要注意是 build目录下的python而不是openpose根目录下的
+    # 如果一直报错可以将绝对路径加入 path环境变量中去。
+    # 或者将绝对路径引进来 F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release
+    # 或是如下添加绝对路径
+    sys.path.append("F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release")
+    # 此句和上句同理 两者只要一者起效便可
+    import pyopenpose as op
+
+except ImportError as e:
+    print('Did you enable `BUILD_PYTHON`')
+    raise e
+# =============================参数args 设置====================================
+# 详细参考flags.hpp 文件
+params = dict()
+params["model_folder"] = "F:\\OPENPOSE\\openpose\\models"
+# 根据实际情况路径做相应改变
+params["number_people_max"] = 1  # 只检测一个人
+params["camera_resolution"] = "640x360"
+params["disable_blending"] = False
+params["render_threshold"] = 0.001
+
+
+# ==============================================================================
 
 class Video:
     def __init__(self, capture):
@@ -64,7 +90,7 @@ class mWindow(QMainWindow, Ui_MainWindow):
         try:
             self.video.captureNextFrame()
             self.label.setPixmap(self.video.convertFrame())
-            # self.label.setScaledContents(False)  # 设置图片自适应窗口
+
         except TypeError:
             print("No frame")
 
@@ -72,61 +98,38 @@ class mWindow(QMainWindow, Ui_MainWindow):
         self.video.captureNextFrame()
         frame = self.video.convertFrame()
         self.label_2.setPixmap(frame)
-        self.label_2.setScaledContents(False)  # 设置图片自适应窗口
+        # self.label_2.setScaledContents(False)  # 设置图片自适应窗口
 
         self.capturedFrame = self.video.captureFrame()
         pose = self.lineEdit.text()
-        global picSN
 
+        global picSN
         picSN += 1
         pictureName = str(picSN) + '_' + pose + ".jpg"
 
         self.picPaths = "../dataset/pic_background/" + pictureName
         cv2.imwrite(self.picPaths, self.capturedFrame)
         print('captured')
+
         try:
-            p = Process(target=self.processPic, args=())
-            p.run()
+
+            self.processPic()
         except:
             print("线程错误")
-            # self.processPic(self.picPath)
 
     def processPic(self):
-        # ====================import openpose=========================================
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        try:
-            sys.path.append(dir_path + '/../python/openpose/Release')
-            # 一定要注意是 build目录下的python而不是openpose根目录下的
-            # 如果一直报错可以将绝对路径加入 path环境变量中去。
-            # 或者将绝对路径引进来 F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release
-            # 或是如下
-            sys.path.append(
-                "F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release")
-            import pyopenpose as op
+        # ============================= 启动openPose ===================================
 
-        except ImportError as e:
-            print('Did you enable `BUILD_PYTHON`')
-            raise e
-        # =============================参数args 设置====================================
-        params = dict()
-        params["model_folder"] = "F:\\OPENPOSE\\openpose\\models"
-        # 根据实际情况做相应改变
-        params["number_people_max"] = 1  # 只检测一个人
-        params["camera_resolution"] = "640x360"
-        params["disable_blending"] = False
-        params["render_threshold"] = 0.001
-        # ============================= 启动openPose ==================================
         opWrapper = op.WrapperPython()
         opWrapper.configure(params)
         opWrapper.start()
         datum = op.Datum()
-        # =============================进行相应的图片处理================================
+
         datum.cvInputData = cv2.imread(self.picPaths)  # 输入
         opWrapper.emplaceAndPop([datum])  # 输出
         keyPoints = datum.poseKeypoints.tolist()
 
-        dstPicPath = "../dataset/marked_pic/p_" + \
-            self.picPaths.split('/')[-1]  # 处理后的图片
+        dstPicPath = "../dataset/marked_pic/p_" + self.picPaths.split('/')[-1]  # 处理后的图片
         cv2.imwrite(dstPicPath, datum.cvOutputData)
         # ============================= 写骨骼数据文件 ===================================
         with open("../dataset/bone_dataSet.data", "a+") as dataSet:
@@ -138,7 +141,8 @@ class mWindow(QMainWindow, Ui_MainWindow):
         height, width, channel = bone_img.shape
         pixmap = QPixmap.fromImage(QImage(
             bone_img.data, width, height, 3 * width, QImage.Format_RGB888).rgbSwapped())
-        self.label_3.setPixmap(pixmap)  # label3 显示图片
+        self.label_3.setPixmap(pixmap)
+        # ============================= label3 显示图片 ==================================
 
     def pointDistance(self, keyPoint):
         """
@@ -147,25 +151,25 @@ class mWindow(QMainWindow, Ui_MainWindow):
         :distance:
         """
         distance0 = (keyPoint[4][0] - keyPoint[9][0]) ** 2 + \
-            (keyPoint[4][1] - keyPoint[9][1]) ** 2
+                    (keyPoint[4][1] - keyPoint[9][1]) ** 2
         distance1 = (keyPoint[7][0] - keyPoint[12][0]) ** 2 + \
-            (keyPoint[7][1] - keyPoint[12][1]) ** 2
+                    (keyPoint[7][1] - keyPoint[12][1]) ** 2
         distance2 = (keyPoint[2][0] - keyPoint[4][0]) ** 2 + \
-            (keyPoint[2][1] - keyPoint[4][1]) ** 2
+                    (keyPoint[2][1] - keyPoint[4][1]) ** 2
         distance3 = (keyPoint[5][0] - keyPoint[7][0]) ** 2 + \
-            (keyPoint[5][1] - keyPoint[7][1]) ** 2
+                    (keyPoint[5][1] - keyPoint[7][1]) ** 2
         distance4 = (keyPoint[0][0] - keyPoint[4][0]) ** 2 + \
-            (keyPoint[0][1] - keyPoint[4][1]) ** 2
+                    (keyPoint[0][1] - keyPoint[4][1]) ** 2
         distance5 = (keyPoint[0][0] - keyPoint[7][0]) ** 2 + \
-            (keyPoint[0][1] - keyPoint[7][1]) ** 2
+                    (keyPoint[0][1] - keyPoint[7][1]) ** 2
         distance6 = (keyPoint[4][0] - keyPoint[10][0]) ** 2 + \
-            (keyPoint[4][1] - keyPoint[10][1]) ** 2
+                    (keyPoint[4][1] - keyPoint[10][1]) ** 2
         distance7 = (keyPoint[7][0] - keyPoint[13][0]) ** 2 + \
-            (keyPoint[7][1] - keyPoint[13][1]) ** 2
+                    (keyPoint[7][1] - keyPoint[13][1]) ** 2
         distance8 = (keyPoint[4][0] - keyPoint[7][0]) ** 2 + \
-            (keyPoint[4][1] - keyPoint[7][1]) ** 2
+                    (keyPoint[4][1] - keyPoint[7][1]) ** 2
         distance9 = (keyPoint[11][0] - keyPoint[14][0]) ** 2 + \
-            (keyPoint[11][1] - keyPoint[14][1]) ** 2
+                    (keyPoint[11][1] - keyPoint[14][1]) ** 2
         distance10 = (keyPoint[10][0] - keyPoint[13][0]
                       ) ** 2 + (keyPoint[10][1] - keyPoint[13][1]) ** 2
         distance11 = (keyPoint[6][0] - keyPoint[10][0]

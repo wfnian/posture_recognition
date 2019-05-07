@@ -10,7 +10,7 @@ from torch.utils.data import DataLoader, Dataset
 from torchvision import transforms
 from tensorboardX import SummaryWriter
 
-root = "E:\\dataset\\taichi\\taichi\\marked_pic"
+root = "../dataset/taichi/marked_pic"
 
 
 def convert_to_img():
@@ -25,7 +25,8 @@ def convert_to_img():
         txt_file.write(img_path + ' ' + img_label + '\n')
 
 
-# convert_to_img()
+convert_to_img()
+
 
 # -----------------ready the dataset--------------------------
 def default_loader(path):
@@ -57,15 +58,13 @@ class MyDataset(Dataset):
         return len(self.imgs)
 
 
-#
 train_data = MyDataset(txt=root + 'train.txt', transform=transforms.ToTensor())
 # test_data = MyDataset(txt=root + 'test.txt', transform=transforms.ToTensor())
+# test_loader = DataLoader(dataset=test_data, batch_size=512)
 train_loader = DataLoader(dataset=train_data, batch_size=16, shuffle=True)
 
 
-# test_loader = DataLoader(dataset=test_data, batch_size=512)
-
-# # -----------------create the Net and training------------------------
+# -----------------create the Net and training------------------------
 
 class Net(torch.nn.Module):
     def __init__(self):
@@ -105,7 +104,6 @@ model = model.cuda()
 optimizer = torch.optim.Adam(model.parameters())
 loss_func = torch.nn.CrossEntropyLoss()
 
-mark = True
 plt_loss = []
 plt_acc = []
 
@@ -116,10 +114,9 @@ for epoch in range(10):
     for batch_x, batch_y in train_loader:
         batch_x, batch_y = Variable(batch_x).cuda(), Variable(batch_y).cuda()
 
-        if mark:
+        if epoch == 9:
             with SummaryWriter(comment="Net") as w:
                 w.add_graph(model, (batch_x,))
-            mark = False
 
         out = model(batch_x)
         loss = loss_func(out, batch_y)
@@ -132,9 +129,11 @@ for epoch in range(10):
         optimizer.step()
         plt_acc.append(train_acc / (len(train_data)))
         plt_loss.append(train_loss / (len(train_data)))
-    print('Train Loss: {:.6f}, Acc: {:.6f}'.format(train_loss / (len(train_data)),
-                                                   train_acc / (len(train_data))))
+    print('Train Loss: {:.6f}, Acc: {:.6f}'.format(train_loss / len(train_data), train_acc / len(train_data)))
 
     model.eval()
 
-torch.save(model.state_dict(), "23classification_pic_2.pth")
+plt.plot(plt_loss)
+plt.plot(plt_acc)
+
+torch.save(model.state_dict(), "../model_pth/23classification_pic.pth")
