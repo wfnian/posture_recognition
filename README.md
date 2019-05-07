@@ -4,3 +4,21 @@
 - 😁😁😁 
 - Posture recognition based on common camera
 - 若有需要可提issues.
+
+# 安装与使用
+首先根据OpenPose WindowsAPI安装说明安装，调用方式为Python调用。  
+[OpenPose GitHub地址](https://github.com/CMU-Perceptual-Computing-Lab/openpose)  
+[Windows OpenPose安装说明](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation.md)
+
+程序目录说明
+![](./sundry/dir.png)
+
+workspace 目录详细说明
+
+- workspace🗂
+  - OpenPose_python_Demo🗂
+  - runs🗂
+  - dataset🗂
+    - taichi🗂
+      - marked_pic🗂
+      - txt📄
