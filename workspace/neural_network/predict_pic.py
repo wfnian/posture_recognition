@@ -35,15 +35,15 @@ class Net(torch.nn.Module):
         return out
 
 
-def predict_pic_result(pic_path=None):
+def predict_pic_result(pics_path=None):
     """
-    :param datas: list
+    :param pics_path: string
     :return: int
     """
     model = Net()
     model.load_state_dict(torch.load("../model_pth/23classification_pic.pth", map_location='cpu'))
 
-    img = Image.open(pic_path).convert('RGB')
+    img = Image.open(pics_path).convert('RGB')
     inputs = transforms.Compose([transforms.ToTensor()])(img)
     inputs = Variable(inputs.unsqueeze(0))
 
@@ -56,4 +56,4 @@ def predict_pic_result(pic_path=None):
 
 if __name__ == "__main__":
     pic_path = "E:\\dataset\\taichi\\taichi\\marked_pic\\p_89_11.jpg"
-    print(predict_pic_result(pic_path=pic_path))
+    print(predict_pic_result(pics_path=pic_path))

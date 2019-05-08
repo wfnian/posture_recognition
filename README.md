@@ -1,7 +1,9 @@
 # Overview ![](https://camo.githubusercontent.com/2d21dcc74fc13272cce1a3b020085968fc269cf7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f70726f70657274792d706572736f6e616c2532307265706f7369746f72792d627269676874677265656e2e737667)
 
 - ![](https://img.shields.io/badge/Author-%40wfnian%F0%9F%98%81-red.svg)
-- Posture recognition based on common camera 基于普通摄像头的太极姿势识别(分类)
+- 基于普通摄像头的太极姿势识别(分类)，通过openpose采集的骨骼点数据做分类。
+  - 第一就是通过openpose采集的骨骼数据做一个自定义特征的全连接网络的训练分类。（已完成）
+  - 第二就是通过openpose采集的骨骼图片做卷积神经网络（CNN）分类（已完成）
 - 相关：[基于Kinect的姿态识别(分类)](https://github.com/wfnian/kinect/wiki)
 - 若有需要和问题可提issues.
 

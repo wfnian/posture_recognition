@@ -18,7 +18,7 @@ def retFloat(val):
 
 
 def getData():
-    with open("../dataset/bone_dataSet.data", "r") as file:
+    with open("../dataset/taichi/bone_dataSet.data", "r") as file:
         data = file.readlines()
     x, y = [], []
     for i in data:
@@ -127,8 +127,8 @@ def train_net():
     plt.subplot(1, 2, 2)
     plt.title("network acc")
     plt.plot(list(range(len(acc_))), acc_, 'g')
-    plt.show()
-    plt.savefig('F:\\openpose\\sundry\\train_loss_acc_pic.png')
+    # plt.show()
+    plt.savefig('../sundry/train_loss_acc_pic.png')
     plt.close(10)
 
     end = time.clock()

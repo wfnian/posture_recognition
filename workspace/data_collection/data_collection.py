@@ -7,7 +7,7 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
-from workspace.data_collection.data_collection_window import *
+from data_collection_window import *
 
 picSN = 10
 

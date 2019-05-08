@@ -6,15 +6,26 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFrame
 
-from build.workspace.Classification import *
-from build.workspace.MainWindow_F import *
-from build.workspace.data_process import *
-from build.workspace.predict_res import *
+# ==================== import neural network =================================
+sys.path.append('../neural_network/')
+try:
+    from classification23_taichi_eigenvalue import *
+    from mainWindow import *
+    from data_process import *
+    from predict_eigenvalue import *
+except ImportError as e:
+    raise e
 
 # ====================import openpose=========================================
 dir_path = os.path.dirname(os.path.realpath(__file__))
 try:
     sys.path.append(dir_path + '/../python/openpose/Release')
+    # 一定要注意是 build目录下的python而不是openpose根目录下的
+    # 如果一直报错可以将绝对路径加入 path环境变量中去。
+    # 或者将绝对路径引进来 F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release
+    # 或是如下添加绝对路径
+    sys.path.append("F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release")
+    # 此句和上句同理 两者只要一者起效便可import openpose
     import pyopenpose as op
 
 except ImportError as e:
@@ -24,6 +35,7 @@ except ImportError as e:
 
 params = dict()
 params["model_folder"] = "F:\\OPENPOSE\\openpose\\models"
+# 根据自己的实际情况选择 model路径
 params["number_people_max"] = 1  # 只检测一个人
 params["camera_resolution"] = "640x360"
 params["render_threshold"] = 0.01
@@ -60,13 +72,10 @@ class Video:
             self.currentFrame = cv2.cvtColor(readFrame, cv2.COLOR_BGR2RGB)
 
     def convertFrame(self):
-        """     converts frame to format suitable for QtGui            """
+        # converts frame to format suitable for QtGui
         try:
             height, width = self.currentFrame.shape[:2]
-            img = QImage(self.currentFrame,
-                         width,
-                         height,
-                         QtGui.QImage.Format_RGB888)
+            img = QImage(self.currentFrame, width, height, QtGui.QImage.Format_RGB888)
             img = QPixmap.fromImage(img)
             self.previousFrame = self.currentFrame
             return img
@@ -95,7 +104,7 @@ class mWindow(QMainWindow, Ui_MainWindow):
     def train_network(self):
 
         train_net()
-        self.label_2.setPixmap(QPixmap("F:\\openpose\\sundry\\train_loss_acc_pic.png"))
+        self.label_2.setPixmap(QPixmap("../sundry/train_loss_acc_pic.png"))
 
     def showCapture(self):
         try:

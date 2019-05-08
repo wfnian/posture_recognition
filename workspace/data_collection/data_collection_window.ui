@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>780</x>
-      <y>660</y>
+      <y>710</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -90,7 +90,7 @@
     <property name="geometry">
      <rect>
       <x>780</x>
-      <y>610</y>
+      <y>650</y>
       <width>81</width>
       <height>27</height>
      </rect>
@@ -133,7 +133,7 @@
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>600</y>
+      <y>640</y>
       <width>151</width>
       <height>41</height>
      </rect>
@@ -163,7 +163,7 @@
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>650</y>
+      <y>700</y>
       <width>151</width>
       <height>51</height>
      </rect>
@@ -193,7 +193,7 @@
     <property name="geometry">
      <rect>
       <x>620</x>
-      <y>400</y>
+      <y>440</y>
       <width>256</width>
       <height>106</height>
      </rect>
@@ -305,7 +305,7 @@
     <property name="geometry">
      <rect>
       <x>670</x>
-      <y>500</y>
+      <y>540</y>
       <width>181</width>
       <height>51</height>
      </rect>
@@ -335,7 +335,7 @@
     <property name="geometry">
      <rect>
       <x>920</x>
-      <y>410</y>
+      <y>450</y>
       <width>72</width>
       <height>51</height>
      </rect>
@@ -357,15 +357,17 @@
     <property name="geometry">
      <rect>
       <x>910</x>
-      <y>410</y>
+      <y>430</y>
       <width>181</width>
-      <height>291</height>
+      <height>341</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Arial</family>
       <pointsize>11</pointsize>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
      </font>
     </property>
     <property name="contextMenuPolicy">
@@ -385,11 +387,11 @@
 会采集不到图片需要
 删除，采集结束后需
 要将可用的数据添加
-到dataset/taichi/
-marked_pic文件夹下
-面.
+到dataset/taichi
+/marked_pic文件夹
+下面.
 页面布局四个区域说
-明同“页面布局说明”</string>
+明同“界面布局说明”</string>
     </property>
     <property name="textFormat">
      <enum>Qt::AutoText</enum>
@@ -402,7 +404,7 @@ marked_pic文件夹下
     <property name="geometry">
      <rect>
       <x>980</x>
-      <y>410</y>
+      <y>450</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -476,7 +478,7 @@ marked_pic文件夹下
      </font>
     </property>
     <property name="text">
-     <string>骨骼图片</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#d8d338;&quot;&gt;骨骼图片&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="textFormat">
      <enum>Qt::AutoText</enum>
@@ -518,11 +520,49 @@ marked_pic文件夹下
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>430</y>
+      <width>251</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>610</y>
+      <width>251</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>label_13</zorder>
+   <zorder>label_14</zorder>
    <zorder>label_8</zorder>
-   <zorder>pushButton</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
-   <zorder>lineEdit</zorder>
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>label_5</zorder>
@@ -533,6 +573,8 @@ marked_pic文件夹下
    <zorder>label_12</zorder>
    <zorder>label_10</zorder>
    <zorder>label_11</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>lineEdit</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
