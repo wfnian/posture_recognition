@@ -128,7 +128,7 @@ def train_net():
     plt.title("network acc")
     plt.plot(list(range(len(acc_))), acc_, 'g')
     # plt.show()
-    plt.savefig('../sundry/train_loss_acc_pic.png')
+    plt.savefig('../sundry/train_loss_acc_eigenvalue.png')
     plt.close(10)
 
     end = time.clock()

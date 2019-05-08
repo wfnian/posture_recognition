@@ -104,7 +104,7 @@ class mWindow(QMainWindow, Ui_MainWindow):
     def train_network(self):
 
         train_net()
-        self.label_2.setPixmap(QPixmap("../sundry/train_loss_acc_pic.png"))
+        self.label_2.setPixmap(QPixmap("../sundry/train_loss_acc_eigenvalue.png"))
 
     def showCapture(self):
         try:

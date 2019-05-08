@@ -25,7 +25,7 @@ def convert_to_img():
         txt_file.write(img_path + ' ' + img_label + '\n')
 
 
-convert_to_img()
+# convert_to_img()
 
 
 # -----------------ready the dataset--------------------------
@@ -56,12 +56,6 @@ class MyDataset(Dataset):
 
     def __len__(self):
         return len(self.imgs)
-
-
-train_data = MyDataset(txt=root + 'train.txt', transform=transforms.ToTensor())
-# test_data = MyDataset(txt=root + 'test.txt', transform=transforms.ToTensor())
-# test_loader = DataLoader(dataset=test_data, batch_size=512)
-train_loader = DataLoader(dataset=train_data, batch_size=16, shuffle=True)
 
 
 # -----------------create the Net and training------------------------
@@ -98,42 +92,60 @@ class Net(torch.nn.Module):
         return out
 
 
-model = Net()
-print(model)
-model = model.cuda()
-optimizer = torch.optim.Adam(model.parameters())
-loss_func = torch.nn.CrossEntropyLoss()
+def train_net_cnn():
+    train_data = MyDataset(txt=root + 'train.txt', transform=transforms.ToTensor())
+    train_loader = DataLoader(dataset=train_data, batch_size=16, shuffle=True)
 
-plt_loss = []
-plt_acc = []
+    model = Net()
+    print(model)
+    model = model.cuda()
+    optimizer = torch.optim.Adam(model.parameters())
+    loss_func = torch.nn.CrossEntropyLoss()
 
-for epoch in range(10):
-    print('epoch {}'.format(epoch + 1))
-    train_loss = 0.
-    train_acc = 0.
-    for batch_x, batch_y in train_loader:
-        batch_x, batch_y = Variable(batch_x).cuda(), Variable(batch_y).cuda()
+    plt_loss = []
+    plt_acc = []
 
-        if epoch == 9:
-            with SummaryWriter(comment="Net") as w:
-                w.add_graph(model, (batch_x,))
+    for epoch in range(10):
+        print('epoch {}'.format(epoch + 1))
+        train_loss = 0.
+        train_acc = 0.
+        for batch_x, batch_y in train_loader:
+            batch_x, batch_y = Variable(batch_x).cuda(), Variable(batch_y).cuda()
 
-        out = model(batch_x)
-        loss = loss_func(out, batch_y)
-        train_loss += loss.item()
-        pred = torch.max(out, 1)[1]
-        train_correct = (pred == batch_y).sum()
-        train_acc += train_correct.item()
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+            if epoch == 9:
+                with SummaryWriter(comment="Net") as w:
+                    w.add_graph(model, (batch_x,))
+
+            out = model(batch_x)
+            loss = loss_func(out, batch_y)
+            train_loss += loss.item()
+            pred = torch.max(out, 1)[1]
+            train_correct = (pred == batch_y).sum()
+            train_acc += train_correct.item()
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
         plt_acc.append(train_acc / (len(train_data)))
         plt_loss.append(train_loss / (len(train_data)))
-    print('Train Loss: {:.6f}, Acc: {:.6f}'.format(train_loss / len(train_data), train_acc / len(train_data)))
+        print('Train Loss: {:.6f}, Acc: {:.6f}'.format(train_loss / len(train_data), train_acc / len(train_data)))
 
-    model.eval()
+        model.eval()
 
-plt.plot(plt_loss)
-plt.plot(plt_acc)
+    # ===================================== 绘图 ==================================
+    plt.figure(12, figsize=(8, 3))
+    plt.subplot(1, 2, 1)
+    plt.title("network loss")
+    plt.plot(plt_loss, 'r')
+    plt.subplot(1, 2, 2)
+    plt.title("network acc")
+    plt.plot(plt_acc, 'g')
+    plt.savefig('../sundry/train_loss_acc_pic.png')
+    plt.close(12)
+    # ===================================== 绘图 ==================================
 
-torch.save(model.state_dict(), "../model_pth/23classification_pic.pth")
+    torch.save(model.state_dict(), "../model_pth/23classification_pic.pth")
+
+
+if __name__ == '__main__':
+    # convert_to_img() 处理图片 写入TXT
+    train_net_cnn()
