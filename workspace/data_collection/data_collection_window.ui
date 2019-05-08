@@ -49,7 +49,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../../sundry/pic/app1.png</pixmap>
+     <pixmap>../sundry/app.png</pixmap>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -71,7 +71,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../../sundry/pic/app2.png</pixmap>
+     <pixmap>../sundry/app2.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -120,7 +120,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../../sundry/pic/app.png</pixmap>
+     <pixmap>../sundry/app1.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -428,6 +428,96 @@ marked_pic文件夹下
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>670</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>每一帧显示</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>300</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>骨骼图片</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>300</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>实时视频</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
    <zorder>label_8</zorder>
    <zorder>pushButton</zorder>
    <zorder>label</zorder>
@@ -440,6 +530,9 @@ marked_pic文件夹下
    <zorder>label_6</zorder>
    <zorder>label_7</zorder>
    <zorder>label_9</zorder>
+   <zorder>label_12</zorder>
+   <zorder>label_10</zorder>
+   <zorder>label_11</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
