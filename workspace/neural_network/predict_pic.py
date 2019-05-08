@@ -35,15 +35,25 @@ class Net(torch.nn.Module):
         return out
 
 
-model = Net()
-print(model)
-model.load_state_dict(torch.load("23classification_pic_2.pth", map_location='cpu'))
+def predict_pic_result(pic_path=None):
+    """
+    :param datas: list
+    :return: int
+    """
+    model = Net()
+    model.load_state_dict(torch.load("../model_pth/23classification_pic.pth", map_location='cpu'))
 
-img = Image.open("E:\\dataset\\taichi\\taichi\\marked_pic\\p_89_11.jpg").convert('RGB')
-pre = transforms.Compose([transforms.ToTensor()])(img)
-pre = pre.unsqueeze(0)
-pre = Variable(pre)
+    img = Image.open(pic_path).convert('RGB')
+    inputs = transforms.Compose([transforms.ToTensor()])(img)
+    inputs = Variable(inputs.unsqueeze(0))
 
-res = model(pre)[0].detach().numpy().tolist()
+    out = model(inputs)[0].detach().numpy().tolist()
 
-resClass = res.index(max(res))
+    resClass = out.index(max(out))
+
+    return resClass
+
+
+if __name__ == "__main__":
+    pic_path = "E:\\dataset\\taichi\\taichi\\marked_pic\\p_89_11.jpg"
+    print(predict_pic_result(pic_path=pic_path))

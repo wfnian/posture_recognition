@@ -7,9 +7,9 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
-from workspace.data_collection.testWindow import *
+from workspace.data_collection.data_collection_window import *
 
-picSN = 1111
+picSN = 10
 
 # ====================import openpose=========================================
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -64,14 +64,12 @@ class Video:
         """
         try:
             height, width = self.currentFrame.shape[:2]
-            img = QImage(self.currentFrame,
-                         width,
-                         height,
-                         QtGui.QImage.Format_RGB888)
+            img = QImage(self.currentFrame, width, height, QtGui.QImage.Format_RGB888)
             img = QPixmap.fromImage(img)
             self.previousFrame = self.currentFrame
             return img
         except:
+            print("Convert error")
             return None
 
 
@@ -110,7 +108,6 @@ class mWindow(QMainWindow, Ui_MainWindow):
         self.picPaths = "../dataset/pic_background/" + pictureName
         cv2.imwrite(self.picPaths, self.capturedFrame)
         print('captured')
-
         try:
 
             self.processPic()
