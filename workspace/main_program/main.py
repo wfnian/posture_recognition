@@ -2,7 +2,7 @@ import os
 import sys
 
 import cv2
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, QCoreApplication
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFrame
 
@@ -47,7 +47,7 @@ opWrapper.start()
 pos = ["预备势", "起势", "左右野马分鬃", "白鹤亮翅", "左右搂膝拗步", "手挥琵琶",
        "左右倒卷肱", "左揽雀尾", "右拦雀尾", "单鞭", "云手", "高探马", "右蹬脚",
        "双峰贯耳", "转身左蹬脚", "左下式独立", "左下式独立", "左右穿梭", "海底针",
-       "闪通臂", "转身搬拦捶", "如封似闭", "十字手"]
+       "闪通臂", "转身搬拦捶", "如封似闭", "十字手", "太极拳"]
 
 
 class Video:
@@ -83,6 +83,16 @@ class Video:
             return None
 
 
+def connectTensorboard():
+    import webbrowser
+    url = "http://wfnian-Y7000:6006"
+    try:
+
+        webbrowser.get('chrome').open_new_tab(url)
+    except Exception as e:
+        webbrowser.open_new_tab(url)
+
+
 class mWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(mWindow, self).__init__()
@@ -99,7 +109,22 @@ class mWindow(QMainWindow, Ui_MainWindow):
         self.video = Video(cv2.VideoCapture(0))
         self._timer2.start(10)  # 每隔多长时间
 
-        self.label_2.setFrameStyle(QFrame.Panel | QFrame.Sunken)
+        self.pushButton_3.clicked.connect(connectTensorboard)
+        self.pushButton_4.clicked.connect(connectTensorboard)
+
+        # ================ 关闭窗口的美化 =========================
+        self.pushButton_5.setFixedSize(15, 15)
+        self.pushButton_6.setFixedSize(15, 15)
+        self.pushButton_7.setFixedSize(15, 15)
+        self.pushButton_5.setStyleSheet(
+            '''QPushButton{background:#6DDF6D;border-radius:5px;}QPushButton:hover{background:green;}''')
+        self.pushButton_6.setStyleSheet(
+            '''QPushButton{background:#F7D674;border-radius:5px;}QPushButton:hover{background:yellow;}''')
+        self.pushButton_7.setStyleSheet(
+            '''QPushButton{background:#F76677;border-radius:5px;}QPushButton:hover{background:red;}''')
+        self.pushButton_7.clicked.connect(QCoreApplication.instance().quit)
+        self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+
 
     def train_network(self):
 
@@ -132,6 +157,6 @@ class mWindow(QMainWindow, Ui_MainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     mywin = mWindow()
-    # mywin.setStyleSheet("#MainWindow{border-image:url(F:/OPENPOSE/sundry/icons/back.png);}")
+    mywin.setStyleSheet("#MainWindow{border-image:url(../sundry/back5.png);}")
     mywin.show()
     sys.exit(app.exec_())

@@ -20,7 +20,7 @@ def convert_to_img():
     txt_file = open(root + 'train.txt', 'w')
 
     for file in files:
-        img_path = root + '\\' + file
+        img_path = root + '/' + file
         img_label = file.split('.')[0].split('_')[-1]
         txt_file.write(img_path + ' ' + img_label + '\n')
 
@@ -105,6 +105,9 @@ def train_net_cnn():
     plt_loss = []
     plt_acc = []
 
+    # writer = SummaryWriter()
+    # tensorboardMark = True
+
     for epoch in range(10):
         print('epoch {}'.format(epoch + 1))
         train_loss = 0.
@@ -112,9 +115,10 @@ def train_net_cnn():
         for batch_x, batch_y in train_loader:
             batch_x, batch_y = Variable(batch_x).cuda(), Variable(batch_y).cuda()
 
-            if epoch == 9:
-                with SummaryWriter(comment="Net") as w:
-                    w.add_graph(model, (batch_x,))
+            # if tensorboardMark:
+            #     tensorboardMark = False
+            #     with SummaryWriter(comment="Net") as w:
+            #         w.add_graph(model, (batch_x,))
 
             out = model(batch_x)
             loss = loss_func(out, batch_y)
@@ -127,6 +131,10 @@ def train_net_cnn():
             optimizer.step()
         plt_acc.append(train_acc / (len(train_data)))
         plt_loss.append(train_loss / (len(train_data)))
+
+        # writer.add_scalar('loss', train_loss / (len(train_data)), epoch)
+        # writer.add_scalar('acc', train_acc / (len(train_data)), epoch)
+
         print('Train Loss: {:.6f}, Acc: {:.6f}'.format(train_loss / len(train_data), train_acc / len(train_data)))
 
         model.eval()

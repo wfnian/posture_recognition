@@ -8,7 +8,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -264,19 +263,19 @@ class Ui_MainWindow(object):
         self.pushButton_3.setText(_translate("MainWindow", "实时视频"))
         self.label_6.setText(_translate("MainWindow", "界面布局说明"))
         self.label_8.setText(_translate("MainWindow", "\n"
-                                                      "\n"
-                                                      "输入类别是摄像头前\n"
-                                                      "所做的姿态,第一帧\n"
-                                                      "会采集不到图片需要\n"
-                                                      "删除，采集结束后需\n"
-                                                      "要将可用的数据添加\n"
-                                                      "到dataset/taichi\n"
-                                                      "/marked_pic文件夹\n"
-                                                      "下面.\n"
-                                                      "页面布局四个区域说\n"
-                                                      "明同“界面布局说明”"))
+"\n"
+"输入类别是摄像头前\n"
+"所做的姿态,第一帧\n"
+"会采集不到图片需要\n"
+"删除，采集结束后需\n"
+"要将可用的数据添加\n"
+"到dataset/taichi\n"
+"/marked_pic文件夹\n"
+"下面.\n"
+"页面布局四个区域说\n"
+"明同“界面布局说明”"))
         self.label_9.setText(_translate("MainWindow", "注意"))
         self.label_10.setText(_translate("MainWindow", "每一帧显示"))
-        self.label_11.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" "
-                                                       "color:#d8d338;\">骨骼图片</span></p></body></html>"))
+        self.label_11.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#d8d338;\">骨骼图片</span></p></body></html>"))
         self.label_12.setText(_translate("MainWindow", "实时视频"))
+

@@ -79,16 +79,16 @@ def train_net():
     _x, _y = getData()
 
     if gpu:  # torch.cuda.is_available():
-        model = twentyclassification(30, 200, 300, 100, 23).cuda()
+        model = twentyclassification(30, 200, 300, 100, 24).cuda()
     else:
-        model = twentyclassification(30, 200, 300, 100, 23)
+        model = twentyclassification(30, 200, 300, 100, 24)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=0.000001)
 
     plt_loss = []
     acc_ = []
 
-    writer = SummaryWriter()
+    # writer = SummaryWriter()
 
     for epoch in range(600):
 
@@ -117,8 +117,11 @@ def train_net():
                 acc = acc + 1
         acc = acc / len(vect)
         acc_.append(acc)
-        writer.add_scalar('loss', loss, epoch)
-        writer.add_scalar('acc', acc, epoch)
+        # writer.add_scalar('loss', loss, epoch)
+        # writer.add_scalar('acc', acc, epoch)
+        # if epoch == 300:
+        #     with SummaryWriter(comment="Net") as w:
+        #         w.add_graph(model, (x_data,))
 
     plt.figure(10, figsize=(8, 3))
     plt.subplot(1, 2, 1)
