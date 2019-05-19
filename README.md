@@ -10,7 +10,8 @@
 ## 安装与使用
 首先根据OpenPose WindowsAPI安装说明安装，调用方式为Python调用。  
 [OpenPose GitHub地址](https://github.com/CMU-Perceptual-Computing-Lab/openpose)  
-[Windows OpenPose安装说明](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation.md)
+<u>[Windows OpenPose安装说明](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation.md)</u>
+最近迁移至Ubuntu，Windows的更新后cuda与caffee不兼容。部分程序有改动。总体不变。
 
 ### 程序开发目录说明
 > `git clone` 下来后`cmake`进行编译,其中要勾选`BUILD_PYTHON`进行编译才能被python调用。
