@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'mainWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.12.2
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -229,7 +230,7 @@ class Ui_MainWindow(object):
         font.setFamily("新宋体")
         font.setPointSize(12)
         self.label_15.setFont(font)
-        self.label_15.setAutoFillBackground(True)
+        self.label_15.setAutoFillBackground(False)
         self.label_15.setTextFormat(QtCore.Qt.RichText)
         self.label_15.setScaledContents(True)
         self.label_15.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
@@ -284,7 +285,7 @@ class Ui_MainWindow(object):
         self.label.setWordWrap(False)
         self.label.setObjectName("label")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(1074, 0, 131, 31))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(1074, 0, 164, 31))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -303,7 +304,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.pushButton_7)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1212, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1212, 30))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -331,7 +332,14 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "结果"))
         self.label_15.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt;\">检测摄像头前一个人的太极姿态，请确保全身都可以被摄</span></p><p><span style=\" font-size:11pt;\">像头所采集到，所对应的招式会显示在左侧结果一栏中。</span></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "姿态预估"))
+        self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">检测摄像头前一个人的太极姿态，请确保全身都可以被摄像头所采集到，所对应的招式会显示在左侧结果一栏中。</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">OpenPose是国外一所大学研究成果，细节开源在GitHub上面，比较特殊的一点是关于它的设计模式，其设计模式使用的是是自底向上的设计方法。是当前最为广泛的姿态识别框架，它可以在摄像头数量在两个及两个以上时提供三维的人体关键点，OpenPose可接受的输入可以是各种格式的图片，视频，还有网络web摄像头，它的输出格式也可进行调整，有JSON，YML，XML格式，也可以是视频图片格式，通过内部代码结构调整甚至可以输出自己想要的数据格式，以及保存到特定的文件方便使用。除了检测出人体的关键骨骼信息之外，OpenPose还能检测人脸的KeyPoint，手部的KeyPoint.</span></p></body></html>"))
         self.label_16.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">更多请访问Github设计README说明</span><a href=\"https://github.com/wfnian/posture_recognition\"><span style=\" font-size:12pt; text-decoration: underline; color:#0000ff;\">Github：posture_recognition</span></a></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "使用说明"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:600;\">基于人体骨骼姿态的姿势识别</span></p></body></html>"))
+
 

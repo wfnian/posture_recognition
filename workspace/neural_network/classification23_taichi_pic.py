@@ -155,5 +155,5 @@ def train_net_cnn():
 
 
 if __name__ == '__main__':
-    # convert_to_img() 处理图片 写入TXT
+    # convert_to_img() # 处理图片 写入TXT
     train_net_cnn()

@@ -19,20 +19,22 @@ except ImportError as e:
 # ====================import openpose=========================================
 dir_path = os.path.dirname(os.path.realpath(__file__))
 try:
+    # sys.path.append(dir_path + '/../python/openpose/Release')
     # 一定要注意是 build目录下的python而不是openpose根目录下的
     # 如果一直报错可以将绝对路径加入 path环境变量中去。
     # 或者将绝对路径引进来 F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release
     # 或是如下添加绝对路径
+    # sys.path.append("F:\\OPENPOSE\\openpose\\build\\python\\openpose\\Release")
+    # 此句和上句同理 两者只要一者起效便可import openpose
+    # import pyopenpose as op
     sys.path.append('/home/wfnian/OPENPOSE/openpose/build/python')
     from openpose import pyopenpose as op
-    # 此句和上句同理 两者只要一者起效便可
-
 
 except ImportError as e:
     print('Did you enable `BUILD_PYTHON`')
     raise e
-# =============================参数args 设置====================================
-# 详细参考flags.hpp 文件
+# =============================== 参数设置 =====================================
+
 params = dict()
 params["model_folder"] = "/home/wfnian/OPENPOSE/openpose/models"
 # 根据自己的实际情况选择 model路径
@@ -85,7 +87,7 @@ class Video:
 
 def connectTensorboard():
     import webbrowser
-    url = "http://localhost:6006"
+    url = "http://wfnian-Y7000:6006"
     try:
 
         webbrowser.get('chrome').open_new_tab(url)
