@@ -1,4 +1,5 @@
 import os
+import subprocess
 import sys
 
 import cv2
@@ -46,7 +47,7 @@ opWrapper.start()
 
 pos = ["预备势", "起势", "左右野马分鬃", "白鹤亮翅", "左右搂膝拗步", "手挥琵琶",
        "左右倒卷肱", "左揽雀尾", "右拦雀尾", "单鞭", "云手", "高探马", "右蹬脚",
-       "双峰贯耳", "转身左蹬脚", "左下式独立", "左下式独立", "左右穿梭", "海底针",
+       "双峰贯耳", "转身左蹬脚", "左下式独立", "右下式独立", "左右穿梭", "海底针",
        "闪通臂", "转身搬拦捶", "如封似闭", "十字手", "太极拳"]
 
 
@@ -85,9 +86,13 @@ class Video:
 
 def connectTensorboard():
     import webbrowser
+
     url = "http://localhost:6006"
     try:
-
+        # from subprocess import call
+        # subprocess.Popen("tensorboard --logdir /home/wfnian/project/posture_recognition/workspace/neural_network/runs/")
+        # call("tensorboard --logdir /home/wfnian/project/posture_recognition/workspace/neural_network/runs/")
+            # tensorboard --logdir /home/wfnian/project/posture_recognition/workspace/neural_network/runs/
         webbrowser.get('chrome').open_new_tab(url)
     except Exception as e:
         webbrowser.open_new_tab(url)
@@ -124,7 +129,6 @@ class mWindow(QMainWindow, Ui_MainWindow):
             '''QPushButton{background:#F76677;border-radius:5px;}QPushButton:hover{background:red;}''')
         self.pushButton_7.clicked.connect(QCoreApplication.instance().quit)
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-
 
     def train_network(self):
 

@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from data_collection_window import *
 
-picSN = 10
+picSN = 223
 
 # ====================import openpose=========================================
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -29,12 +29,17 @@ except ImportError as e:
 # =============================参数args 设置====================================
 # 详细参考flags.hpp 文件
 params = dict()
+params["camera"] = 1
 params["model_folder"] = "/home/wfnian/OPENPOSE/openpose/models"
 # 根据实际情况路径做相应改变
 params["number_people_max"] = 1  # 只检测一个人
 params["camera_resolution"] = "640x360"
 params["disable_blending"] = True
 params["render_threshold"] = 0.001
+
+opWrapper = op.WrapperPython()
+opWrapper.configure(params)
+opWrapper.start()
 
 
 # ==============================================================================
@@ -117,9 +122,6 @@ class mWindow(QMainWindow, Ui_MainWindow):
     def processPic(self):
         # ============================= 启动openPose ===================================
 
-        opWrapper = op.WrapperPython()
-        opWrapper.configure(params)
-        opWrapper.start()
         datum = op.Datum()
 
         datum.cvInputData = cv2.imread(self.picPaths)  # 输入
