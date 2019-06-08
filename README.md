@@ -24,14 +24,18 @@ workspace 程序开发目录详细说明
 
 - 📂workspace
   - 📁data_collection(数据采集)
+    - data_collection_window.py
+    - data_collection_window.ui
+    - data_collection.py
   - 📁dataset (数据集)
     - 📁taichi
       - 📁marked_pic
         - 🎴 p_2_0.jpg（最后一个下划线后面是类别，此处`0`是类别，前一个数字`2`代表大概数量）
         - 🎴 ...
-      - 📄marked_pictrain.txt
+      - 📄bone_dataSet.data(骨骼特征数据)
+      - 📄marked_pictrain.txt(图片路径)
   - 📁main_program
-    - main.py
+    - main.py 主程序入口
     - mainWindow.py
     - mainWindow.ui
   - 📁model_pth (模型保存位置)
