@@ -7,7 +7,7 @@
   - 第一就是通过openpose采集的骨骼数据做一个自定义特征的全连接网络的训练分类。（已完成）
   - 第二就是通过openpose采集的骨骼图片做卷积神经网络（CNN）分类（已完成）
 - 相关：[基于Kinect的姿态识别(分类)](https://github.com/wfnian/kinect/wiki)
-- 若有需要和问题可提issues.
+
 
 ## 1.1. 安装与使用
 
@@ -15,6 +15,7 @@
 [OpenPose GitHub地址](https://github.com/CMU-Perceptual-Computing-Lab/openpose)  
 <u>[OpenPose安装说明](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation.md)</u>
 最近迁移至Ubuntu，Windows的更新后cuda与caffee不兼容。部分程序有改动。总体不变。
+- 若有需要和问题可提issues.我在Windows，Ubuntu，Mac上均安装过OpenPose。![](https://img.shields.io/badge/-Windows-blue.svg)![](https://img.shields.io/badge/-Ubuntu-orange.svg)![](https://img.shields.io/badge/-Mac-lightgrey.svg)
 
 ### 1.1.1. 程序开发目录说明
 
