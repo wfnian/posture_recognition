@@ -60,6 +60,8 @@ workspace 程序开发目录详细说明
 | 全连接 | 卷积网络 |
 | :-: | :-: |
 | ![pic](workspace/sundry/train_loss_acc_eigenvalue.png)    | ![pic](workspace/sundry/train_loss_acc_pic.png)       |
+> 说明：由于在Ubuntu下选择了桌面是unity所以不能录屏，展示为GIF图片。
+> 由于电脑的摄像头在下方，使用iPad来作为输入。效果依旧是实时效果，但是数据量较小。
 
 ## 1.3. 展示效果
 
