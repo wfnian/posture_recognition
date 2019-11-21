@@ -72,7 +72,8 @@ workspace 程序开发目录详细说明
 
 ## 1.4. 关于更更更更具体的思路
 
-> 点击查看[论文简版](https://github.com/wfnian/posture_recognition/blob/master/workspace/%E8%AE%BA%E6%96%87%E7%AE%80%E7%89%88.pdf) 
+> 点击查看[论文简版](https://github.com/wfnian/posture_recognition/blob/master/workspace/%E8%AE%BA%E6%96%87%E7%AE%80%E7%89%88.pdf)   
+> 或者[这个地址：腾讯文档](https://docs.qq.com/pdf/DWlNNR0xtZGdsRnpQ)
 > 啊我的论文纯属凑字数的，写的乱，别笑我 :octocat: :octocat: :octocat: :octocat: :octocat: 
 
 ## 1.5. 答辩结果
