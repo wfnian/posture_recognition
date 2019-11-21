@@ -70,7 +70,11 @@ workspace 程序开发目录详细说明
 > 说明：由于在Ubuntu下选择了桌面是unity所以不能录屏，展示为GIF图片。  
 > 由于电脑的摄像头在下方，使用iPad来作为输入。效果依旧是实时效果，但是数据量较小。
 
+## 1.4. 关于更更更更具体的思路
 
-## 1.4. 答辩结果
+> 点击查看[论文简版](https://github.com/wfnian/posture_recognition/blob/master/workspace/%E8%AE%BA%E6%96%87%E7%AE%80%E7%89%88.pdf) 
+> 啊我的论文纯属凑字数的，写的乱，别笑我 :octocat: :octocat: :octocat: :octocat: :octocat: 
+
+## 1.5. 答辩结果
 
 > 校级答辩 `优秀` 哈哈哈哈哈，承蒙老师指导，承蒙答辩老师欣赏，承蒙被抽到校级答辩。
