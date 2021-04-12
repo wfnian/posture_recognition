@@ -65,6 +65,8 @@ workspace 程序开发目录详细说明
 
 ## 1.2. 训练效果
 
+###### （注意此处没有测试集，研一的时候我又利用此数据集，并且划分训练集测试集，利用四层卷积+池化能达到97%以上的效果）
+
 | 全连接 | 卷积网络 |
 | :-: | :-: |
 | ![pic](workspace/sundry/train_loss_acc_eigenvalue.png)    | ![pic](workspace/sundry/train_loss_acc_pic.png)       |
