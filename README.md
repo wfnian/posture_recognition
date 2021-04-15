@@ -82,7 +82,6 @@ workspace 程序开发目录详细说明
 ## 1.4. 关于更更更更具体的思路
   
 > [这个地址：腾讯文档](https://docs.qq.com/pdf/DWlNNR0xtZGdsRnpQ)  
-> 啊我的论文纯属凑字数的，写的乱，别笑我 :octocat: :octocat:  
 > 不再提供论文
 
 ## 1.5. 答辩结果
