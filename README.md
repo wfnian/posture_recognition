@@ -80,10 +80,10 @@ workspace 程序开发目录详细说明
 > 由于电脑的摄像头在下方，使用iPad来作为输入。效果依旧是实时效果，但是数据量较小。
 
 ## 1.4. 关于更更更更具体的思路
-
-> 点击查看[论文简版](https://github.com/wfnian/posture_recognition/blob/master/workspace/%E8%AE%BA%E6%96%87%E7%AE%80%E7%89%88.pdf)   
-> 或者[这个地址：腾讯文档](https://docs.qq.com/pdf/DWlNNR0xtZGdsRnpQ)  
+  
+> [这个地址：腾讯文档](https://docs.qq.com/pdf/DWlNNR0xtZGdsRnpQ)  
 > 啊我的论文纯属凑字数的，写的乱，别笑我 :octocat: :octocat:  
+> 不再提供论文
 
 ## 1.5. 答辩结果
 
