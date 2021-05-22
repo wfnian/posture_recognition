@@ -81,7 +81,7 @@ workspace 程序开发目录详细说明
 
 ## 1.4. 关于更更更更具体的思路
   
-> [论文地址：腾讯文档](https://docs.qq.com/pdf/DYk13T0RqRlFIc1hj)  
+> [论文地址：腾讯文档](https://docs.qq.com/pdf/DYk13T0RqRlFIc1hj)    (权限设置，需要申请才能开放查看)
 
 ## 1.5. 答辩结果
 
