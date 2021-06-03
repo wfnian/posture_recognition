@@ -141,7 +141,7 @@ class mWindow(QMainWindow, Ui_MainWindow):
             frame = self.video.captureFrame()
             datum = op.Datum()
             datum.cvInputData = frame
-            opWrapper.emplaceAndPop([datum])
+            opWrapper.emplaceAndPop(op.VectorDatum([datum]))
             resPic = datum.cvOutputData
             # cv2.putText(resPic, "OpenPose", (25, 25),
             #             cv2.FONT_HERSHEY_COMPLEX, 1.0, (0, 0, 222))
