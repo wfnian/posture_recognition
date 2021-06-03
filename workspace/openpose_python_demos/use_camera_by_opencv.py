@@ -36,7 +36,7 @@ cap = cv2.VideoCapture(0)
 while True:
     ret, frame = cap.read()
     datum.cvInputData = frame
-    opWrapper.emplaceAndPop([datum])
+    opWrapper.emplaceAndPop(op.VectorDatum([datum]))
     resPic = datum.cvOutputData
     cv2.putText(resPic, "OpenPose", (25, 25),
                 cv2.FONT_HERSHEY_COMPLEX, 0.5, (222, 222, 222))
