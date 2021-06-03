@@ -125,7 +125,7 @@ class mWindow(QMainWindow, Ui_MainWindow):
         datum = op.Datum()
 
         datum.cvInputData = cv2.imread(self.picPaths)  # 输入
-        opWrapper.emplaceAndPop([datum])  # 输出
+        opWrapper.emplaceAndPop(op.VectorDatum([datum]))  # 输出
         keyPoints = datum.poseKeypoints.tolist()
 
         dstPicPath = "../dataset/marked_pic/p_" + self.picPaths.split('/')[-1]  # 处理后的图片
