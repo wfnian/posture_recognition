@@ -1,3 +1,5 @@
+### 最新提示(2022-01-05)：openpose的最新接口可能有所改动，需要对用地方改改。
+
 # 0. 创新点
 
 ![](https://pic.downk.cc/item/5ff665603ffa7d37b3c47aee.png)    
