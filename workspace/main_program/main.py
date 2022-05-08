@@ -149,10 +149,15 @@ class mWindow(QMainWindow, Ui_MainWindow):
             pic = cv2.cvtColor(resPic, cv2.COLOR_BGR2RGB)
             pic = QImage(pic, pic.shape[1], pic.shape[0], QtGui.QImage.Format_RGB888)
             self.label_3.setPixmap(QPixmap.fromImage(pic))
-
-            keyPoints = datum.poseKeypoints.tolist()
-            self.label_4.setText(pos[predict_result(pointDistance(keyPoints[0]) +
+            if datum.poseKeypoints is None:
+                pass
+            else:
+                keyPoints = datum.poseKeypoints.tolist()
+                self.label_4.setText(pos[predict_result(pointDistance(keyPoints[0]) +
                                                     pointAngle(keyPoints[0]))])
+#             keyPoints = datum.poseKeypoints.tolist()
+#             self.label_4.setText(pos[predict_result(pointDistance(keyPoints[0]) +
+#                                                     pointAngle(keyPoints[0]))])
 
         except TypeError:
             print("No frame")
